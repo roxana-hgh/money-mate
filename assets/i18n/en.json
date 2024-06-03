@@ -7,5 +7,9 @@
         "wallet": "wallet",
         "profile": "Profile"
 
+    },
+    "add_new": "Add New",
+    "home" : {
+        "available_cards" : "My Credit available"
     }
 }
