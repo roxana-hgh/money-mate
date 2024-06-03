@@ -1,0 +1,11 @@
+{
+    "menu" : {
+        "home": "خانه",
+        "statistics": "آمار",
+        "settings": "تنظیمات",
+        "planes": "اهداف",
+        "wallet": "کیف پول",
+        "profile": "پروفایل"
+
+    }
+}

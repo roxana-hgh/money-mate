@@ -1,0 +1,11 @@
+{
+    "menu" : {
+        "home": "home",
+        "statistics": "statistics",
+        "settings": "settings",
+        "planes": "planes",
+        "wallet": "wallet",
+        "profile": "Profile"
+
+    }
+}
