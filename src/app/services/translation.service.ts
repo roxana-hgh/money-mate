@@ -23,6 +23,8 @@ export class TranslationService {
     localStorage.setItem('language', lang);
     this.language.next(lang);
     this.loadTranslations(lang).subscribe();
+    document.documentElement.setAttribute("lang", lang);
+   
   }
 
   getLanguage(): Observable<string> {
@@ -30,7 +32,7 @@ export class TranslationService {
   }
 
   private loadTranslations(lang: string): Observable<any> {
-    return this.http.get(`/assets/i18n/${lang}.json`).pipe(
+    return this.http.get(`assets/i18n/${lang}.json`).pipe(
       tap((translations) => {
         this.translations.next(translations);
       })
