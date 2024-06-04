@@ -9,7 +9,10 @@
 
     },
     "add_new": "افزودن کارت جدید",
+    "edit": "ویرایش",
     "home" : {
-        "available_cards" : "حساب‌ های موجود"
+        "available_cards" : "حساب‌ های موجود",
+        "income": "درآمد",
+        "expense": "مخارج"
     }
 }

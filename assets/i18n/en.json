@@ -9,7 +9,10 @@
 
     },
     "add_new": "Add New",
+    "edit": "Edit",
     "home" : {
-        "available_cards" : "My Credit available"
+        "available_cards" : "My Credit available",
+        "income": "Income",
+        "expense": "Expense"
     }
 }
