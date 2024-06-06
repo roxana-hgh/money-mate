@@ -1,0 +1,54 @@
+<app-cards-list></app-cards-list>
+
+
+<div class="row my-4 text-center">
+    <div class="col-12">
+       <div class="">
+        <span>{{'total' |translate | async}}</span>
+        <h1 class="fw-light mb-2">$ {{2612.0000| number: '3.2'}}</h1>
+        <p class="text-secondary"><a href="">{{'edit' | translate | async}}</a></p>
+       </div>
+    </div>
+</div>
+
+<!-- income expense-->
+<div class="row g-2 mb-4">
+    <div class="col-6">
+        <div class="card ">
+            <div class="card-body p-2 p-lg-3">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <div class="avatar  p-1 shadow-sm shadow-success rounded">
+                            <div class="icons bg-success text-white rounded">
+                                <i class="bi bi-arrow-down-left"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-self-center ps-0">
+                        <p class="size-10 text-secondary mb-0">{{'home.income' | translate | async}}</p>
+                        <p class="mb-1">$ {{1405.6200| number: '3.2'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body p-2 p-lg-3">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <div class="avatar p-1 shadow-sm shadow-danger rounded">
+                            <div class="icons bg-danger text-white rounded">
+                                <i class="bi bi-arrow-up-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col align-self-center ps-0">
+                        <p class="size-10 text-secondary mb-0">{{'home.expense' | translate | async}}</p>
+                        <p class="mb-1">$ {{1205.200| number: '3.2'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

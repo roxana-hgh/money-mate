@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "moneyMate": {
+    "moneymate": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "moneyMate:build:production"
+              "buildTarget": "moneymate:build:production"
             },
             "development": {
-              "buildTarget": "moneyMate:build:development"
+              "buildTarget": "moneymate:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "moneyMate:build"
+            "buildTarget": "moneymate:build"
           }
         },
         "test": {

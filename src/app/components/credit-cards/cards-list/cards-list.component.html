@@ -1,0 +1,17 @@
+<div class="row mb-2 my-3">
+    <div class="col">
+        <h6 class="title">{{'home.available_cards' | translate | async}}</h6>
+    </div>
+    <div class="col-auto align-self-center">
+        <a href="#" class="small">{{'add_new' | translate | async}}</a>
+    </div>
+</div>
+
+<div class="">
+    <swiper-container  [breakpoints]="swiperbreakpoints" space-between="30"  css-mode="true" >
+        <swiper-slide> <app-credit-card-item ></app-credit-card-item></swiper-slide>
+        <swiper-slide> <app-credit-card-item ></app-credit-card-item></swiper-slide>
+        <swiper-slide> <app-credit-card-item ></app-credit-card-item></swiper-slide>
+    
+      </swiper-container>
+</div>

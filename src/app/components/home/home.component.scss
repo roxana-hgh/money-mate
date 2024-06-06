@@ -1,0 +1,25 @@
+.card {
+    background-color: var(--bs-body-bg);
+    border-radius: 10px;
+    border-color: #f8f8f8;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
+    
+
+    & > .icons {
+        line-height: normal;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+  }
