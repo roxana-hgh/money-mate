@@ -15,5 +15,20 @@
         "available_cards" : "My Credit available",
         "income": "Income",
         "expense": "Expense"
+    },
+
+    "auth": {
+        "login": "Login",
+        "signup": "signup",
+        "donthaveaccount": "Don't have an account?",
+        "signinfailed": "Sign In Failed!",
+        "signinsuccess": "Login success!  Redirecting to Home Page ...",
+        "alreaadyhaveaccount": "Alreaady have an account?",
+        "signupfailed": "ign Up Failed!",
+        "signupsuccess": "Resdister success!",
+        "logout": "logout"
+    },
+    "landing": {
+        "text": "Track finance with MoneyMate app, Watch Closely your Expenses and Create Finance Goals ."
     }
 }
