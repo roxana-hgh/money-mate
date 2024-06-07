@@ -1,0 +1,41 @@
+<div class="row h-100 align-items-center mt-4 py-3">
+
+    <div class="col-11 col-sm-11 col-md-6 col-lg-5 col-xl-4 mx-auto align-self-center p-4 ">
+        <h1 class="mb-4">{{'auth.signup' | translate | async}}</h1>
+
+        <div class="text-danger my-3 py-2" *ngIf="wasFailed"  >
+            <strong class="d-block">{{'auth.signupfailed' | translate | async}}</strong> 
+            <span class="mt-2 d-block ">{{error}}</span>
+ 
+          </div>
+          <div class="text-success my-3 py-2"  *ngIf="wasSuccess">
+            <strong>{{'auth.signupsuccess' | translate | async}}</strong>
+          </div>
+
+        <form [formGroup]="RegisterForm" (ngSubmit)="onRegister()" >
+            <div class="form-group form-floating mb-3 ">
+                <input type="text" class="form-control" value="" id="name" formControlName="name" required placeholder="Name">
+                <label class="form-control-label" for="name">Name</label>
+            </div>
+            <div class="form-group form-floating mb-3 ">
+                <input type="email" class="form-control" value="" id="email" formControlName="email" required placeholder="Email">
+                <label class="form-control-label" for="email">Email</label>
+            </div>
+    
+            <div class="form-group form-floating  mb-3">
+                <input type="password" class="form-control " id="password" formControlName="password" required placeholder="Password">
+                <label class="form-control-label" for="password">Password</label>
+              
+            </div>
+            <div class="mt-5 py-3 d-grid">
+                <button type="submit" class="btn btn-primary  shadow-sm">{{'auth.signup' | translate | async}}</button>
+            </div>
+
+        </form>
+        <div class="mt-2 d-flex justify-content-between text-muted py-3">
+            <span>{{'auth.alreaadyhaveaccount' | translate | async}}</span>
+            <a class="text-info" href="">{{'auth.login' | translate | async}} </a>
+        </div>
+    </div>
+  
+</div>

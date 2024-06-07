@@ -79,7 +79,154 @@ a {
   color: inherit;
 }
 
+
+
 .offcanvas.offcanvas-start {
   width: 350px;
+}
+
+/* 7. Form elements */
+.form-floating {
+  position: relative;
+}
+
+.form-floating > label {
+  padding: 10px 0;
+  line-height: 32px;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+  font-size: 13px;
+  padding: 5px 0 10px 0;
+  line-height: 28px;
+  height: auto;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0rem);
+}
+
+.form-floating .form-control {
+  background-color: transparent;
+  border-width: 0 0 1px 0;
+  border-color: #0000001a;
+  border-radius: 0;
+  padding: 10px 0 10px 0;
+  height: auto;
+  line-height: 30px;
+  -webkit-appearance: none;
+}
+
+.form-floating .form-control:focus, .form-floating .form-control:not(:placeholder-shown) {
+  padding-top: calc(10px + 13px);
+  padding-bottom: calc(10px - 3px);
+  line-height: 20px;
+}
+
+.form-floating.is-valid:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  height: 1px;
+  bottom: 0;
+  width: 100%;
+  border-radius: 2px;
+  background-color: #00dfa3;
+}
+
+.form-floating.is-invalid:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  height: 1px;
+  bottom: 0;
+  width: 100%;
+  border-radius: 2px;
+  background-color: #f73563;
+}
+
+.form-control {
+  border-color: #0000001a;
+  border-radius: 10px;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.form-static {
+  position: relative;
+}
+
+.form-static > label {
+  padding: 0;
+  line-height: 18px;
+  opacity: 0.65;
+  font-size: 13px;
+}
+
+.form-static .form-control {
+  background-color: transparent;
+  border-width: 0 0 1px 0;
+  border-color: #0000001a;
+  border-radius: 0;
+  padding: 5px 0;
+  height: auto;
+  line-height: 30px;
+  -webkit-appearance: none;
+}
+
+.form-static.is-valid:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  height: 1px;
+  bottom: 0;
+  width: 100%;
+  border-radius: 2px;
+  background-color: #00dfa3;
+}
+
+.form-static.is-invalid:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  z-index: 1;
+  height: 1px;
+  bottom: 0;
+  width: 100%;
+  border-radius: 2px;
+  background-color: #f73563;
+}
+
+.trasparent-input {
+  font-size: 50px;
+  line-height: 68px;
+  padding: 10px 15px;
+  border: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.trasparent-input:focus {
+  background-color: #0000001a;
+  outline: none;
+}
+
+.tooltip-btn {
+  background: none;
+  border: 0;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  margin-top: -18px;
+  right: 0px;
+  padding: 5px 10px;
+  line-height: 26px;
 }
 

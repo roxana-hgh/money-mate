@@ -12,9 +12,20 @@ import { TranslationService } from './services/translation.service';
 import { CardsListComponent } from './components/credit-cards/cards-list/cards-list.component';
 import { CreditCardItemComponent } from './components/credit-cards/credit-card-item/credit-card-item.component';
 import { HomeComponent } from './components/home/home.component';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from '../environments/environment';
+// import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+// import { getAuth, provideAuth } from '@angular/fire/auth';
+// import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { SingupComponent } from './components/auth/singup/singup.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { NotloginGuard } from './shared/guards/notlogin.guard';
+
 
 @NgModule({
   declarations: [
@@ -25,15 +36,26 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
     CardsListComponent,
     CreditCardItemComponent,
     HomeComponent,
+    SingupComponent,
+    LoginComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [TranslationService, provideFirebaseApp(() => initializeApp({"projectId":"moneymate-83cdf","appId":"1:187782230521:web:e0a2aa81944feacfafcd28","storageBucket":"moneymate-83cdf.appspot.com","apiKey":"AIzaSyB_akkexqHlxGMSiAFC2uro0uNmQQxVQ-0","authDomain":"moneymate-83cdf.firebaseapp.com","messagingSenderId":"187782230521"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
+  providers: [TranslationService, AuthGuard, NotloginGuard
+    // provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
+    // provideAuth(() => getAuth()), 
+    // provideFirestore(() => getFirestore())
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

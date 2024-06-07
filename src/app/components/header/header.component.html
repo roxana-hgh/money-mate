@@ -62,6 +62,12 @@
                             <span class="menu-title">{{'menu.settings' | translate | async}}</span>
                         </a>
                     </li>
+                    <li class=" menu-item" *ngIf="isAuthenticated">
+                        <a class="d-block" (click)="logout()">
+                            <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                            <span class="menu-title">{{'auth.logout' | translate | async}}</span>
+                        </a>
+                    </li>
                   
                     
                   </ul>
