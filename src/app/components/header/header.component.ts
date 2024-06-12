@@ -4,6 +4,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslationService } from '../../services/translation.service';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +12,8 @@ import { Subscription } from 'rxjs';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
-  router: any;
-  constructor(private translationService: TranslationService, private authService: AuthService) {}
+
+  constructor(private translationService: TranslationService, private authService: AuthService, private router: Router) {}
   isAuthenticated: boolean = false;
   private userSub !: Subscription;
 
@@ -20,16 +21,15 @@ export class HeaderComponent implements OnInit {
     console.log(this.isAuthenticated);
     //  to check if the user is authenticated
     this.userSub = this.authService.user.subscribe(user => {
-      console.log(user);
-      
-      this.isAuthenticated = !!user
-    })
+      this.isAuthenticated = !!user;
+    });
 
     //console.log(this.isAuthenticated);
   }
   logout(){
     this.authService.logout();
-    this.router.navigate(['home']);
+    this.router.navigate(['/welcome']);
+    this.offcanvasService.dismiss()
     
 
   }

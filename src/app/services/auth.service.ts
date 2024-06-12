@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Subject, throwError } from 'rxjs';
+import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 interface AuthResponseData {
   idToken: string;
@@ -25,10 +26,10 @@ export class AuthService {
   private SignInrootURL =
     'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB_akkexqHlxGMSiAFC2uro0uNmQQxVQ-0';
 
-  user = new Subject<User | null>();
-  router: any;
+    user = new BehaviorSubject<User | null>(null);  // Use BehaviorSubject
 
-  constructor(private http: HttpClient, private firestore: AngularFirestore, private afAuth: AngularFireAuth) {}
+
+  constructor(private http: HttpClient, private firestore: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) {}
 
   signup(email: string, password: string, name: string) {
     return this.http
@@ -153,15 +154,10 @@ export class AuthService {
   }
 
   logout() {
-    // Clear the user data from local storage
     localStorage.removeItem('userData');
     localStorage.removeItem('token');
-
-    // Notify subscribers that the user is logged out
     this.user.next(null);
-
-    // Navigate to the login or landing page
-    this.router.navigate(['home']);
+    this.router.navigate(['/welcome']);  
   }
 }
 
