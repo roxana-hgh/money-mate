@@ -18,6 +18,7 @@ export class SingupComponent {
   wasSuccess: boolean = false;
   wasFailed: boolean = false;
   error!: string;
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +38,7 @@ export class SingupComponent {
         this.router.navigate(['home']);
       },
       (errorMessage) => {
+        this.wasFailed =true;
         console.log('error');
         console.log(errorMessage);
         this.error = errorMessage;

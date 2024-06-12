@@ -28,7 +28,18 @@
               
             </div>
             <div class="mt-5 py-3 d-grid">
-                <button type="submit" class="btn btn-primary  shadow-sm">{{'auth.signup' | translate | async}}</button>
+                <button type="submit" class="btn btn-primary  shadow-sm">
+                    <span *ngIf="!loading; else loader"> {{'auth.signup' | translate | async}}</span>
+                    <ng-template #loader>
+                     <div class="d-flex justify-content-center py-1">
+                         <div class="spinner-border spinner-border-sm" role="status">
+                           <span class="visually-hidden">Loading...</span>
+                         </div>
+                       </div>
+                    </ng-template>
+                 
+                 </button>
+                
             </div>
 
         </form>

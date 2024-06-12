@@ -18,6 +18,7 @@ export class LoginComponent {
   wasSuccess: boolean = false;
   wasFailed: boolean = false;
   error!: string;
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -30,19 +31,27 @@ export class LoginComponent {
   loginSubmit(): void {
     this.wasSuccess = false;
     this.wasFailed = false;
+    this.loading = true
+   
+    
 
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
+
     this.authService.signIn(email, password).subscribe(
       (signInData) => {
+     
         console.log(signInData);
         this.wasSuccess = true;
         this.router.navigate(['home']);
+        
       },
       (errorMessage) => {
+        this.wasFailed = true;
         console.log('error');
         console.log(errorMessage);
         this.error = errorMessage;
+        this.loading = false
       }
     );
     
