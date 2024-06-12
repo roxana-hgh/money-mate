@@ -7,11 +7,16 @@ import { SingupComponent } from './components/auth/singup/singup.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { NotloginGuard } from './shared/guards/notlogin.guard';
 import { LandingComponent } from './components/landing/landing.component';
+import { BaseComponent } from './components/base/base.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '', component: LandingComponent, canActivate: [NotloginGuard] },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'welcome', component: LandingComponent, canActivate: [NotloginGuard] },
+  { path: '', component: BaseComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] , children: [
+     { path: 'home', component: HomeComponent },
+  ] 
+},
+  
   { path: 'login', component: LoginComponent, canActivate: [NotloginGuard] },
   { path: 'signup', component: SingupComponent, canActivate: [NotloginGuard] },
 ];

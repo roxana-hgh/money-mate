@@ -25,6 +25,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { NotloginGuard } from './shared/guards/notlogin.guard';
+import { BaseComponent } from './components/base/base.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { NotloginGuard } from './shared/guards/notlogin.guard';
     HomeComponent,
     SingupComponent,
     LoginComponent,
-    LandingComponent
+    LandingComponent,
+    BaseComponent
   ],
   imports: [
     BrowserModule,
