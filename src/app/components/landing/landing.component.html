@@ -20,10 +20,10 @@
 <div class="col-11 col-sm-11 mt-auto mx-auto py-4">
     <div class="row ">
         <div class="col-6 text-end d-grid">
-            <a href="/signup" class="btn btn-light btn-lg shadow-sm">{{'auth.signup' | translate | async}}</a>
+            <a [href]="getFullUrl('signup')" class="btn btn-light btn-lg shadow-sm">{{'auth.signup' | translate | async}}</a>
         </div>
         <div class="col-6 d-grid">
-            <a href="/login" class="btn btn-primary btn-lg shadow-sm">{{'auth.login' | translate | async}}</a>
+            <a [href]="getFullUrl('login')" class="btn btn-primary btn-lg shadow-sm">{{'auth.login' | translate | async}}</a>
         </div>
     </div>
 </div>

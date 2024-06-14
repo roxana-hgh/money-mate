@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { navigateTo } from '../../../utils/url-util';
 
 @Component({
   selector: 'app-singup',
@@ -27,6 +28,9 @@ export class SingupComponent {
   ) {}
 
   ngOnInit(): void {}
+  getFullUrl(path: string): string {
+    return navigateTo(path);
+  }
   onRegister() {
     const email = this.RegisterForm.get('email')?.value;
     const password = this.RegisterForm.get('password')?.value;
@@ -35,7 +39,7 @@ export class SingupComponent {
       (signupData) => {
         console.log(signupData);
         this.wasSuccess = true;
-        this.router.navigate(['home']);
+        this.router.navigateByUrl(navigateTo('home'));;
       },
       (errorMessage) => {
         this.wasFailed =true;

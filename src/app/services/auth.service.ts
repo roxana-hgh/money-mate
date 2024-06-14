@@ -6,6 +6,8 @@ import { User } from '../models/user.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+import { navigateTo } from '../utils/url-util';
 
 interface AuthResponseData {
   idToken: string;
@@ -22,9 +24,9 @@ interface AuthResponseData {
 export class AuthService {
 
   private SignUprootURL =
-    'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB_akkexqHlxGMSiAFC2uro0uNmQQxVQ-0';
+    `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`;
   private SignInrootURL =
-    'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB_akkexqHlxGMSiAFC2uro0uNmQQxVQ-0';
+    `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseConfig.apiKey}`;
 
     user = new BehaviorSubject<User | null>(null);  // Use BehaviorSubject
 
@@ -157,7 +159,7 @@ export class AuthService {
     localStorage.removeItem('userData');
     localStorage.removeItem('token');
     this.user.next(null);
-    this.router.navigate(['/welcome']);  
+    this.router.navigateByUrl(navigateTo('welcome'));  
   }
 }
 

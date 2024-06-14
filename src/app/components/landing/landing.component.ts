@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { navigateTo } from '../../utils/url-util';
 
 @Component({
   selector: 'app-landing',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './landing.component.scss'
 })
 export class LandingComponent {
-
+  getFullUrl(path: string): string {
+    return navigateTo(path);
+  }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../../services/auth.service';
+import { navigateTo } from '../../../utils/url-util';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,6 +28,9 @@ export class LoginComponent {
   ) {}
 
   ngOnInit(): void {}
+  getFullUrl(path: string): string {
+    return navigateTo(path);
+  }
 
   loginSubmit(): void {
     this.wasSuccess = false;
@@ -43,7 +47,7 @@ export class LoginComponent {
      
         console.log(signInData);
         this.wasSuccess = true;
-        this.router.navigate(['home']);
+        this.router.navigateByUrl(navigateTo('home'));
         
       },
       (errorMessage) => {

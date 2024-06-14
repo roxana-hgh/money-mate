@@ -26,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { NotloginGuard } from './shared/guards/notlogin.guard';
 import { BaseComponent } from './components/base/base.component';
+import { APP_BASE_HREF } from '@angular/common';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { BaseComponent } from './components/base/base.component';
     AngularFirestoreModule 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [TranslationService, AuthGuard, NotloginGuard
+  providers: [TranslationService, AuthGuard, NotloginGuard,
+    { provide: APP_BASE_HREF, useValue: environment.baseHref }
     // provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
     // provideAuth(() => getAuth()), 
     // provideFirestore(() => getFirestore())
