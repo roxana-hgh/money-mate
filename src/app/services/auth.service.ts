@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
-import { navigateTo } from '../utils/url-util';
+import { FirestoreService } from './firestore.service';
+
 
 interface AuthResponseData {
   idToken: string;
@@ -18,11 +17,13 @@ interface AuthResponseData {
   registered?: boolean;
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  
   private SignUprootURL =
     `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseConfig.apiKey}`;
   private SignInrootURL =
@@ -31,7 +32,7 @@ export class AuthService {
     user = new BehaviorSubject<User | null>(null);  // Use BehaviorSubject
 
 
-  constructor(private http: HttpClient, private firestore: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) {}
+  constructor(private http: HttpClient, private injector: Injector, private router: Router) {}
 
   signup(email: string, password: string, name: string) {
     return this.http
@@ -149,17 +150,24 @@ export class AuthService {
    
   }
   private saveUserData(userId: string, name: string) {
-    this.firestore.collection('users').doc(userId).set({
-      userId,
-      name
-    });
+    const firestore = this.injector.get(FirestoreService)
+    firestore.createDocument("users", {userId : userId, name: name}).subscribe(
+      (res) => {
+        console.log("Document created successfully:", res);
+      },
+      (error) => {
+        console.error("Error creating document:", error);
+        return throwError("An unknown error occurred!"); 
+      }
+  
+  )
   }
 
   logout() {
     localStorage.removeItem('userData');
     localStorage.removeItem('token');
     this.user.next(null);
-    this.router.navigateByUrl(navigateTo('welcome'));  
+    this.router.navigate([environment.baseHref, 'welcome']);  
   }
 }
 

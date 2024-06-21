@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivateChild } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+
 
 
 @Injectable({
@@ -19,7 +21,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       if (isAuthenticated) {
         return true;
       } else {
-        this.router.navigate(['/welcome']);
+        this.router.navigate([environment.baseHref, 'welcome']);  
         return false
       }
    
@@ -35,7 +37,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       if (isAuthenticated) {
         return true;
       } else {
-        this.router.navigate(['/welcome']);
+        this.router.navigate([environment.baseHref, 'welcome']);  
         return false
       }
    

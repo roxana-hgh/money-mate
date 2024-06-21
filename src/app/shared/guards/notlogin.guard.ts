@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivateChild } from '@angular/router';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class NotloginGuard implements CanActivate {
 
     
       if (isAuthenticated) {
-        this.router.navigate(['/']);
+        this.router.navigate(['/',environment.baseHref]);
         return false;
       } else {
        

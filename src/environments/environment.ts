@@ -1,6 +1,7 @@
 export const environment = {
     production: false,
     baseHref: '/',
+    
     firebaseConfig : {
         apiKey: "AIzaSyB_akkexqHlxGMSiAFC2uro0uNmQQxVQ-0",
         authDomain: "moneymate-83cdf.firebaseapp.com",

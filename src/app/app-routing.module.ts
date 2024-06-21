@@ -13,7 +13,8 @@ const routes: Routes = [
   //{ path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'welcome', component: LandingComponent, canActivate: [NotloginGuard] },
   { path: '', component: BaseComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] , children: [
-     { path: 'home', component: HomeComponent },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
   ] 
 },
   

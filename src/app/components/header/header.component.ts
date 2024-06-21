@@ -5,6 +5,7 @@ import { TranslationService } from '../../services/translation.service';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -28,7 +29,7 @@ export class HeaderComponent implements OnInit {
   }
   logout(){
     this.authService.logout();
-    this.router.navigate(['/welcome']);
+    this.router.navigate([environment.baseHref, 'welcome']);
     this.offcanvasService.dismiss()
     
 
