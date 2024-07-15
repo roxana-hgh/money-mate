@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row w-100 justify-content-between align-items-center g-0">
                 <div class="col-2">
-                    <button (click)="openMenu(menuOffcanvas)"  class="btn ">
+                    <button (click)="openMenu(menuOffcanvas)"  class="btn p-1">
                         <i class="bi bi-list"></i>
                     </button>
                 </div>
@@ -16,8 +16,8 @@
                     </a>
                   
                 </div>
-                <div class="col-2 text-center">
-                    <a href="" target="_self" class="btn ">
+                <div class="col-2 text-end">
+                    <a href="" target="_self" class="btn p-1">
                         <i class="bi bi-gear"></i>
                         <span class="count-indicator"></span>
                     </a>
@@ -63,7 +63,7 @@
                         </a>
                     </li>
                     <li class=" menu-item" *ngIf="isAuthenticated">
-                        <a class="d-block" (click)="logout()">
+                        <a class="d-block pointer-cursor" (click)="logout()">
                             <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
                             <span class="menu-title">{{'auth.logout' | translate | async}}</span>
                         </a>

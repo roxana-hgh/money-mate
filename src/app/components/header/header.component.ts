@@ -15,17 +15,18 @@ import { environment } from '../../../environments/environment';
 export class HeaderComponent implements OnInit {
 
   constructor(private translationService: TranslationService, private authService: AuthService, private router: Router) {}
-  isAuthenticated: boolean = false;
+  isAuthenticated = false;
   private userSub !: Subscription;
 
   ngOnInit() {
     console.log(this.isAuthenticated);
     //  to check if the user is authenticated
-    this.userSub = this.authService.user.subscribe(user => {
-      this.isAuthenticated = !!user;
+    this.userSub = this.authService.isAuthenticated().subscribe((isAuth) => {
+      this.isAuthenticated = isAuth;
     });
-
-    //console.log(this.isAuthenticated);
+    
+    
+    console.log(this.isAuthenticated);
   }
   logout(){
     this.authService.logout();
@@ -44,7 +45,7 @@ export class HeaderComponent implements OnInit {
 		this.offcanvasService.open(content, { position: 'start' });
 	}
   ngOnDestroy(): void {
-    this.userSub.unsubscribe()
+   this.userSub.unsubscribe()
   }
 
 }
