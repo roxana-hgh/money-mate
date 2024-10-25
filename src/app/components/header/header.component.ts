@@ -32,8 +32,7 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
     this.router.navigate([environment.baseHref, 'welcome']);
     this.offcanvasService.dismiss()
-    
-
+  
   }
 
   set_lang(lang: string) {

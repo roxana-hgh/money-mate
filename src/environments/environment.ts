@@ -1,16 +1,9 @@
 export const environment = {
-    production: false,
-    baseHref: '/',
-    
-    firebaseConfig : {
-        apiKey: "AIzaSyB_akkexqHlxGMSiAFC2uro0uNmQQxVQ-0",
-        authDomain: "moneymate-83cdf.firebaseapp.com",
-        projectId: "moneymate-83cdf",
-        storageBucket: "moneymate-83cdf.appspot.com",
-        messagingSenderId: "187782230521",
-        appId: "1:187782230521:web:e0a2aa81944feacfafcd28"
-      }
-  };
-  
- 
-  
+  production: false,
+  baseHref: '/',
+  supabase: {
+    Url: 'https://vwgyfkcpejtqlyuyblqk.supabase.co',
+    Key:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ3Z3lma2NwZWp0cWx5dXlibHFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk4NDA0OTAsImV4cCI6MjA0NTQxNjQ5MH0.9mrdqinDnG2zk0OnVpz_jMKFFAuitt9pyf61QnyP5qw',
+  }
+};

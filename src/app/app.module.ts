@@ -12,13 +12,9 @@ import { TranslationService } from './services/translation.service';
 import { CardsListComponent } from './components/credit-cards/cards-list/cards-list.component';
 import { CreditCardItemComponent } from './components/credit-cards/credit-card-item/credit-card-item.component';
 import { HomeComponent } from './components/home/home.component';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 import { environment } from '../environments/environment';
-// import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-// import { getAuth, provideAuth } from '@angular/fire/auth';
-// import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+
 import { SingupComponent } from './components/auth/singup/singup.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { LandingComponent } from './components/landing/landing.component';
@@ -49,9 +45,7 @@ import { APP_BASE_HREF } from '@angular/common';
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
-    AngularFirestoreModule 
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [TranslationService, AuthGuard, NotloginGuard,

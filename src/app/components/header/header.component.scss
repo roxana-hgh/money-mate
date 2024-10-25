@@ -1,4 +1,7 @@
 .header {
+    position: sticky;
+    top: 0;
+    left: 0;
     background-color: var(--bs-body-bg);
     z-index: 100;
     .logo {

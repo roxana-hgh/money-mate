@@ -1,10 +1,13 @@
-export class User {
+import { Card } from "./card.model";
+
+export class _User {
     constructor(
       public email: string,
       public id: string,
       private _token: string,
       private _tokenExpirationDate: Date,
-      public name?: string 
+      public name?: string,
+      public cards?: Card[] 
     ) {}
   
     get token() {

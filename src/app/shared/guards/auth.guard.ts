@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | boolean | UrlTree {
-    const isAuthenticated = localStorage.getItem('userData') ;
+    const isAuthenticated = localStorage.getItem('sb-vwgyfkcpejtqlyuyblqk-auth-token') ;
 
     
       if (isAuthenticated) {
@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | boolean | UrlTree {
-    const isAuthenticated = localStorage.getItem('userData') ;
+    const isAuthenticated = localStorage.getItem('sb-vwgyfkcpejtqlyuyblqk-auth-token') ;
 
     
       if (isAuthenticated) {

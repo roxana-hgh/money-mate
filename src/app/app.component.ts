@@ -7,9 +7,13 @@ import { AuthService } from './services/auth.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  constructor(private authservice : AuthService){}
+  constructor(private authservice : AuthService){
+    
+  }
 
   ngOnInit(): void {
-    this.authservice.autoLogin()
+    this.authservice.autoLogin();
+    console.log("isAuthenticated", this.authservice.isAuthenticated());
+    console.log("isAuthenticatedSubject", this.authservice.isAuthenticatedSubject);
   }
 }

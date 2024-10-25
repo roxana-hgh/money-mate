@@ -34,27 +34,20 @@ export class LoginComponent {
     this.wasSuccess = false;
     this.wasFailed = false;
     this.loading = true
+    
    
     
 
     const email = this.loginForm.get('email')?.value;
     const password = this.loginForm.get('password')?.value;
 
-    this.authService.signIn(email, password).subscribe(
-      (signInData) => {
-     
-        console.log(signInData);
-        this.wasSuccess = true;
-        this.router.navigate(['home'], { relativeTo: this.router.routerState.root });
-        
-      },
-      (errorMessage) => {
-        this.wasFailed = true;
-        console.log('error');
-        console.log(errorMessage);
-        this.error = errorMessage;
-        this.loading = false
+    this.authService.login(email, password).subscribe((result) => {
+      if (result.error) {
+        this.error = result.error.message;
+      } else {
+        this.router.navigate([environment.baseHref, 'home']);
       }
+    }
     );
     
   }

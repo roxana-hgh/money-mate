@@ -34,17 +34,15 @@ export class SingupComponent {
     const email = this.RegisterForm.get('email')?.value;
     const password = this.RegisterForm.get('password')?.value;
     const name = this.RegisterForm.get('name')?.value;
-    this.authService.signup(email, password, name).subscribe(
-      (signupData) => {
-        console.log(signupData);
-        this.wasSuccess = true;
-        this.router.navigate([environment.baseHref, 'home']);
-      },
-      (errorMessage) => {
-        this.wasFailed =true;
-        console.log('error');
-        console.log(errorMessage);
-        this.error = errorMessage;
+    this.authService.register(email, name, password).subscribe(
+      (result) => {
+        console.log(result);
+        
+        if (result.error) {
+          this.error = result.error.message;
+        } else {
+          this.router.navigate([environment.baseHref, 'home']);
+        }
       }
     );
   }
