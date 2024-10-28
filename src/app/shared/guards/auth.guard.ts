@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivateChild } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -9,13 +10,13 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
-  constructor(private router: Router){}
+  constructor(private router: Router, private authService: AuthService){}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | boolean | UrlTree {
-    const isAuthenticated = localStorage.getItem('sb-vwgyfkcpejtqlyuyblqk-auth-token') ;
+    const isAuthenticated = this.authService.CheckAuthenticated(); 
 
     
       if (isAuthenticated) {
@@ -31,8 +32,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | boolean | UrlTree {
-    const isAuthenticated = localStorage.getItem('sb-vwgyfkcpejtqlyuyblqk-auth-token') ;
-
+    const isAuthenticated = this.authService.CheckAuthenticated();
     
       if (isAuthenticated) {
         return true;

@@ -1,7 +1,9 @@
-export interface Card {
-    id: string;
-    cardName: string;
-    cardNumber: string;
-    cardTotal: number;
+export interface Account {
+    id: bigint;
+    name: string;
+    number?: number;
+    balance: number;
     userId: string;
+    color: string;
+    created_at: Date;
 }

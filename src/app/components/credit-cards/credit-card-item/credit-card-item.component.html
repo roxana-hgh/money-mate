@@ -13,16 +13,16 @@
             </div>
         </div>
         <h6 class="fw-normal mb-3">
-            000 0000 0001 546598
+           {{account.number }}
         </h6>
         <div class="row">
             <div class="col-auto">
                 <small class="mb-0 text-muted size-10">Total</small>
-                <p>$10,200</p>
+                <p>{{account.balance | currency }}</p>
             </div>
             <div class="col text-end">
-                <small class="mb-0 text-light size-10">Card Holder</small>
-                <p>CardName</p>
+                <small class="mb-0 text-light size-10">Card Name</small>
+                <p>{{account.name}}</p>
             </div>
         </div>
     </div>

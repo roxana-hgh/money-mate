@@ -1,4 +1,6 @@
 import { Component  } from '@angular/core';
+import { AccountsService } from '../../../services/accounts.service';
+import { Account } from '../../../models/card.model';
 
 @Component({
   selector: 'app-cards-list',
@@ -7,7 +9,7 @@ import { Component  } from '@angular/core';
 
 })
 export class CardsListComponent {
-  
+  accounts !: Account[]
 
   swiperbreakpoints = {
     0: {
@@ -23,9 +25,14 @@ export class CardsListComponent {
     }
   }
 
-  constructor() {}
+  constructor(private accountsService: AccountsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.accountsService.getAccounts().subscribe((res:Account[]) => {
+      this.accounts = res
+      //console.log("acc",this.accounts);
+    });
+  }
 
   
 

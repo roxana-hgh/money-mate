@@ -44,9 +44,13 @@ export class LoginComponent {
     this.authService.login(email, password).subscribe((result) => {
       if (result.error) {
         this.error = result.error.message;
+        this.wasFailed = true;
       } else {
+        this.wasSuccess = true;
         this.router.navigate([environment.baseHref, 'home']);
       }
+
+      this.loading = false;
     }
     );
     

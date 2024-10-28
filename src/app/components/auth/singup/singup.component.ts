@@ -31,6 +31,9 @@ export class SingupComponent {
   ngOnInit(): void {}
 
   onRegister() {
+    this.wasSuccess = false;
+    this.wasFailed = false;
+    this.loading = true
     const email = this.RegisterForm.get('email')?.value;
     const password = this.RegisterForm.get('password')?.value;
     const name = this.RegisterForm.get('name')?.value;
@@ -40,9 +43,14 @@ export class SingupComponent {
         
         if (result.error) {
           this.error = result.error.message;
+          this.wasFailed = true;
+          
+          
         } else {
           this.router.navigate([environment.baseHref, 'home']);
+          this.wasSuccess = true;
         }
+        this.loading = false;
       }
     );
   }

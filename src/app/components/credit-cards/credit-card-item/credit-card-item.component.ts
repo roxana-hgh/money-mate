@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Account } from '../../../models/card.model';
 
 @Component({
   selector: 'app-credit-card-item',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './credit-card-item.component.scss'
 })
 export class CreditCardItemComponent {
-
+   @Input() account!: Account;
 }

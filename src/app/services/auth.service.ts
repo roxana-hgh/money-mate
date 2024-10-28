@@ -3,12 +3,9 @@ import {
   AuthChangeEvent,
   AuthResponse,
   createClient,
-  Session,
-  SupabaseClient,
-  User,
+  Session, SupabaseClient, User 
 } from '@supabase/supabase-js';
 
-import { _User } from '../models/user.model';
 import { environment } from '../../environments/environment';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 
@@ -18,7 +15,7 @@ import { BehaviorSubject, from, Observable } from 'rxjs';
 export class AuthService {
   user = new BehaviorSubject<User | null>(null); // Use BehaviorSubject
    isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-
+   session: any;
   private supabase: SupabaseClient;
 
   constructor() {
@@ -27,7 +24,8 @@ export class AuthService {
       environment.supabase.Key
     );
 
-    this.autoLogin();
+    this.session = this.getSession()
+    this.authChanges((_, session) => this.session = session);
     // Check if there's an existing session when the service initializes
     const session = this.supabase.auth
       .getSession()
@@ -35,21 +33,36 @@ export class AuthService {
         if (session) {
           this.user.next(session.user);
           this.isAuthenticatedSubject.next(true);
+          localStorage.setItem('token', session?.access_token || '');
         }
       });
         this.supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session) {
         this.user.next(session.user);
         this.isAuthenticatedSubject.next(true);
+        localStorage.setItem('token', session?.access_token || '');
       } else if (event === 'SIGNED_OUT') {
+        localStorage.removeItem('token');
         this.user.next(null);
         this.isAuthenticatedSubject.next(false);
       }
     });
   }
-
   getClient(): SupabaseClient {
     return this.supabase;
+  }
+  public getUser() {
+    return this.supabase.auth.getUser();
+  }
+
+  public getSession() {
+    return this.supabase.auth.getSession();
+  }
+
+  async getAccessToken(): Promise<string | null> {
+    const { data } = await this.supabase.auth.getSession();
+    localStorage.setItem('token', data.session?.access_token || '');
+    return data.session?.access_token || null;
   }
 
   register(
@@ -82,33 +95,46 @@ export class AuthService {
     return from(promise); // Return as an observable
   }
 
-  autoLogin() {
-    this.isAuthenticatedSubject.next(false);
-  
-    // Get session and add more logging
-    this.supabase.auth.getSession()
-      .then(({ data: { session } }) => {
-        if (session) {
-          console.log('Session retrieved:', session);
-          this.user.next(session.user);
-          this.isAuthenticatedSubject.next(true);
-        } else {
-          console.log('No session found');
-          this.user.next(null);
-          this.isAuthenticatedSubject.next(false);
-        }
-      })
-      .catch((error) => {
-        console.error('Error during auto-login:', error);
-        this.user.next(null);
-        this.isAuthenticatedSubject.next(false);
-      });
+  public authChanges(callback: (event: AuthChangeEvent, session: Session | null) => void): any {
+    return this.supabase.auth.onAuthStateChange(callback);
   }
 
-  // Optional: Expose the isAuthenticated observable
   isAuthenticated(): Observable<boolean> {
     return this.isAuthenticatedSubject.asObservable();
   }
+
+  public CheckAuthenticated(): boolean {
+    if (this.session) {
+      return true;
+    }
+    return false;
+  }
+
+  // autoLogin() {
+  //   this.isAuthenticatedSubject.next(false);
+  
+  //   // Get session and add more logging
+  //   this.supabase.auth.getSession()
+  //     .then(({ data: { session } }) => {
+  //       if (session) {
+  //         console.log('Session retrieved:', session);
+  //         this.user.next(session.user);
+  //         this.isAuthenticatedSubject.next(true);
+  //       } else {
+  //         console.log('No session found');
+  //         this.user.next(null);
+  //         this.isAuthenticatedSubject.next(false);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error during auto-login:', error);
+  //       this.user.next(null);
+  //       this.isAuthenticatedSubject.next(false);
+  //     });
+  // }
+
+  // Optional: Expose the isAuthenticated observable
+  
 
   // signup(email: string, password: string, name: string) {
   //   return this.http
