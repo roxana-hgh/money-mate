@@ -19,6 +19,7 @@ export class AccountsService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
       apikey: environment.supabase.Key,
+      'Prefer': 'return=minimal'
     });
   }
 
@@ -40,5 +41,18 @@ export class AccountsService {
           .pipe(catchError(this.handleError));
     }
   
+  }
+
+  addAccount(data: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token ) {
+      return throwError('No valid user or token found');
+    }else{
+      return this.http
+          .post(`${this.baseUrl}/accounts`, data, {
+            headers: this.createHeaders(token),
+          })
+          .pipe(catchError(this.handleError));
+    }
   }
 }

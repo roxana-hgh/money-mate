@@ -1,4 +1,4 @@
-<div class="card theme-bg shadow-sm shadow-purple mb-3 blue-gradient">
+<div class="card theme-bg shadow-sm shadow-purple mb-3 " ngClass="{{account.color}}">
    
     <div class="card-body">
         <div class="row mb-4">
@@ -12,12 +12,12 @@
                 </p>
             </div>
         </div>
-        <h6 class="fw-normal mb-3">
+        <h5 class="fw-normal mb-3">
            {{account.number }}
-        </h6>
+        </h5>
         <div class="row">
             <div class="col-auto">
-                <small class="mb-0 text-muted size-10">Total</small>
+                <small class="mb-0 text-light size-10">Total</small>
                 <p>{{account.balance | currency }}</p>
             </div>
             <div class="col text-end">

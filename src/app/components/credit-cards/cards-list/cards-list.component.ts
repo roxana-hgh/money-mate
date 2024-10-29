@@ -14,7 +14,7 @@ export class CardsListComponent {
   swiperbreakpoints = {
     0: {
       spaceBetween: 5,
-      slidesPerView: 1.1,
+      slidesPerView: 1,
       center: true
     },
     640: {

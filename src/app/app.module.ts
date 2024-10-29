@@ -23,6 +23,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { NotloginGuard } from './shared/guards/notlogin.guard';
 import { BaseComponent } from './components/base/base.component';
 import { APP_BASE_HREF } from '@angular/common';
+import { AddNewCardComponent } from './components/credit-cards/add-new-card/add-new-card.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { APP_BASE_HREF } from '@angular/common';
     SingupComponent,
     LoginComponent,
     LandingComponent,
-    BaseComponent
+    BaseComponent,
+    AddNewCardComponent
   ],
   imports: [
     BrowserModule,
