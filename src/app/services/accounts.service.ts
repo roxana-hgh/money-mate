@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class AccountsService {
   
-  baseUrl = 'https://vwgyfkcpejtqlyuyblqk.supabase.co/rest/v1/';
+  baseUrl = 'https://vwgyfkcpejtqlyuyblqk.supabase.co/rest/v1';
   constructor(private http: HttpClient, private authService: AuthService) {
     
   }

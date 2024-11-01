@@ -1,7 +1,7 @@
 <div class="card theme-bg shadow-sm shadow-purple mb-3 " ngClass="{{account.color}}">
    
     <div class="card-body">
-        <div class="row mb-4">
+        <div class="row mb-3">
             <div class="col-auto align-self-center">
                 <img src="" alt="">
             </div>
@@ -12,17 +12,21 @@
                 </p>
             </div>
         </div>
-        <h5 class="fw-normal mb-3">
-           {{account.number }}
-        </h5>
+        <div class="fw-normal mb-4">
+            <small class="mb-0 text-light size-10">Card Name</small>
+            <h5>{{account.name}}</h5>
+        </div>
         <div class="row">
             <div class="col-auto">
                 <small class="mb-0 text-light size-10">Total</small>
                 <p>{{account.balance | currency }}</p>
             </div>
-            <div class="col text-end">
-                <small class="mb-0 text-light size-10">Card Name</small>
-                <p>{{account.name}}</p>
+            <div class="col text-end" >
+                <small class="mb-0 text-light size-10">Card Number</small>
+                <p *ngIf="account.number else elseBlock"  >{{account.number}}</p>
+                <ng-template #elseBlock>
+                  <span class="d-block">-</span>
+                </ng-template>
             </div>
         </div>
     </div>
