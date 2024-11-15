@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | boolean | UrlTree {
-    const isAuthenticated = this.authService.CheckAuthenticated(); 
+    const isAuthenticated = localStorage.getItem('token'); 
 
     
       if (isAuthenticated) {
@@ -32,7 +32,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | boolean | UrlTree {
-    const isAuthenticated = this.authService.CheckAuthenticated();
+    const isAuthenticated = localStorage.getItem('token'); 
     
       if (isAuthenticated) {
         return true;
