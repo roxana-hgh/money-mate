@@ -1,21 +1,24 @@
 <div class="row g-0 mb-2 my-4 align-items-center">
-    <div class="col">
-        <h6 class="title m-0">{{'home.available_cards' | translate | async}}</h6>
-    </div>
-    <div class="col-auto align-self-center">
-        <a routerLink="/add-card" class="small d-flex gap-1 text-primary align-items-center">{{'add_new' | translate | async}} <i class="bi bi-plus-circle"></i></a>
-    </div>
+  <div class="col">
+    <h6 class="title m-0">{{ "home.available_cards" | translate | async }}</h6>
+  </div>
+  <div class="col-auto align-self-center">
+    <a
+      routerLink="/add-card"
+      class="small d-flex gap-1 text-primary align-items-center"
+      >{{ "add_new" | translate | async }} <i class="bi bi-plus-circle"></i
+    ></a>
+  </div>
 </div>
 
 <div *ngIf="!accounts" class="loader p-4 my-5 m-2">
-    <app-loader></app-loader>
-  </div>
+  <app-loader></app-loader>
+</div>
 
-<div class="py-2 mt-2" *ngIf="accounts">
-   
-
-      <owl-carousel-o [options]="customOptions">
-        <ng-template *ngFor="let account of accounts" carouselSlide><app-credit-card-item [account]="account" ></app-credit-card-item></ng-template>  
-       
-      </owl-carousel-o>
+<div class="py-2 mt-2 mb-4" *ngIf="accounts">
+  <owl-carousel-o [options]="customOptions">
+    <ng-template *ngFor="let account of accounts" carouselSlide
+      ><app-credit-card-item [account]="account"></app-credit-card-item
+    ></ng-template>
+  </owl-carousel-o>
 </div>

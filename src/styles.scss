@@ -238,3 +238,22 @@ a {
   cursor: pointer;
 }
 
+.owl-theme .owl-nav.disabled + .owl-dots {
+  margin-top: 0;
+  position: absolute;
+  bottom: -0.8rem;
+  width: 100%;
+
+  span {
+    width: 8px;
+    height: 8px;
+    margin: 3px;
+    background: rgba($color: $silver-lake-blue, $alpha: 0.5);
+
+    
+  }
+
+  .owl-dot.active span {
+    background: $indigo-dye;
+  }
+}
