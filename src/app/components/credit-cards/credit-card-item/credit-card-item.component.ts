@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Account } from '../../../models/card.model';
+import { Account } from '../../../models/account.model';
 
 @Component({
   selector: 'app-credit-card-item',

@@ -1,6 +1,7 @@
 import { Component  } from '@angular/core';
 import { AccountsService } from '../../../services/accounts.service';
-import { Account } from '../../../models/card.model';
+import { Account } from '../../../models/account.model';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-cards-list',
@@ -11,26 +12,35 @@ import { Account } from '../../../models/card.model';
 export class CardsListComponent {
   accounts !: Account[]
 
-  swiperbreakpoints = {
-    0: {
-      spaceBetween: 5,
-      slidesPerView: 1,
-      center: true
+  customOptions: OwlOptions = {
+    loop: false,
+
+    dots: true,
+    navSpeed: 700,
+   
+    responsive: {
+      0: {
+        items: 1
+      },
+      500: {
+        items: 2
+      },
+      940: {
+        items: 3
+      }
     },
-    640: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    }
+    nav: false
   }
 
   constructor(private accountsService: AccountsService) {}
 
   ngOnInit() {
-    this.accountsService.getAccounts().subscribe((res:Account[]) => {
-      this.accounts = res
-      //console.log("acc",this.accounts);
+    this.accountsService.getAccounts().subscribe((res: Account[]) => {
+      this.accounts = res;
+      this.accounts = this.accounts.sort((a, b) => {
+        return (new Date(b.created_at).getTime() - new Date(a.created_at).getTime()) as number;
+      });
+      //console.log("acc", this.accounts);
     });
   }
 

@@ -12,6 +12,7 @@
     "edit": "Edit",
     "total": "Total",
     "optional": "Optional",
+    "delete": "Delete",
     "home" : {
         "available_cards" : "My Credit available",
         "income": "Income",

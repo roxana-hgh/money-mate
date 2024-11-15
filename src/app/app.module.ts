@@ -1,7 +1,7 @@
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'; 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -23,7 +23,9 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { NotloginGuard } from './shared/guards/notlogin.guard';
 import { BaseComponent } from './components/base/base.component';
 import { APP_BASE_HREF } from '@angular/common';
-import { AddNewCardComponent } from './components/credit-cards/add-new-card/add-new-card.component';
+import { AddEditCardComponent } from './components/credit-cards/add-edit-card/add-edit-card.component';
+import { LoaderComponent } from './components/shared/loader/loader.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { AddNewCardComponent } from './components/credit-cards/add-new-card/add-
     LoginComponent,
     LandingComponent,
     BaseComponent,
-    AddNewCardComponent
+    AddEditCardComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +50,10 @@ import { AddNewCardComponent } from './components/credit-cards/add-new-card/add-
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    
+    BrowserAnimationsModule,
+    CarouselModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  
   providers: [TranslationService, AuthGuard, NotloginGuard,
     { provide: APP_BASE_HREF, useValue: environment.baseHref }
     // provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 

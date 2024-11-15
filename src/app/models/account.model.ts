@@ -1,5 +1,5 @@
 export interface Account {
-    id: bigint;
+    id: number;
     name: string;
     number?: number;
     balance: number;

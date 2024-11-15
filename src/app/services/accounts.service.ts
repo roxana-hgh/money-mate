@@ -16,12 +16,13 @@ export class AccountsService {
 
   private createHeaders(token: string): HttpHeaders {
     return new HttpHeaders({
+      'apikey': environment.supabase.Key,
+      'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-      apikey: environment.supabase.Key,
       'Prefer': 'return=minimal'
     });
   }
+  
 
   // Helper method to handle errors
   private handleError(error: any): Observable<never> {
@@ -43,6 +44,19 @@ export class AccountsService {
   
   }
 
+  getAccount(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token ) {
+      return throwError('No valid user or token found');
+    }else{
+      return this.http
+          .get(`${this.baseUrl}/accounts?id=eq.${id}&select=*`, {
+            headers: this.createHeaders(token),
+          })
+          .pipe(catchError(this.handleError));
+    }
+  }
+
   addAccount(data: any): Observable<any> {
     const token = localStorage.getItem('token');
     if (!token ) {
@@ -50,6 +64,32 @@ export class AccountsService {
     }else{
       return this.http
           .post(`${this.baseUrl}/accounts`, data, {
+            headers: this.createHeaders(token),
+          })
+          .pipe(catchError(this.handleError));
+    }
+  }
+
+  updateAccount(id: number, data: any): Observable<any> {
+    const token = localStorage.getItem('token');
+   
+    if (!token ) {
+      return throwError('No valid user or token found');
+    }else{
+      const headers = this.createHeaders(token);
+      return this.http
+          .patch(`${this.baseUrl}/accounts?id=eq.${id}`, data, { headers })
+          .pipe(catchError(this.handleError));
+    }
+  }
+
+  deleteAccount(id: number): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token ) {
+      return throwError('No valid user or token found');
+    }else{
+      return this.http
+          .delete(`${this.baseUrl}/accounts?id=eq.${id}`, {
             headers: this.createHeaders(token),
           })
           .pipe(catchError(this.handleError));

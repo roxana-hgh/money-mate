@@ -8,7 +8,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { NotloginGuard } from './shared/guards/notlogin.guard';
 import { LandingComponent } from './components/landing/landing.component';
 import { BaseComponent } from './components/base/base.component';
-import { AddNewCardComponent } from './components/credit-cards/add-new-card/add-new-card.component';
+import { AddEditCardComponent } from './components/credit-cards/add-edit-card/add-edit-card.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: '', component: BaseComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard] , children: [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'add-card', component: AddNewCardComponent },
+    { path: 'add-card', component: AddEditCardComponent },
+    { path: 'edit-card/:id', component: AddEditCardComponent },
   ] 
 },
   

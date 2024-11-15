@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddNewCardComponent } from './add-new-card.component';
+import { AddEditCardComponent } from './add-edit-card.component';
 
-describe('AddNewCardComponent', () => {
-  let component: AddNewCardComponent;
-  let fixture: ComponentFixture<AddNewCardComponent>;
+describe('AddEditCardComponent', () => {
+  let component: AddEditCardComponent;
+  let fixture: ComponentFixture<AddEditCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddNewCardComponent]
+      declarations: [AddEditCardComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AddNewCardComponent);
+    fixture = TestBed.createComponent(AddEditCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
