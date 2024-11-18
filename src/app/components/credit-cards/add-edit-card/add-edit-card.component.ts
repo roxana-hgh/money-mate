@@ -5,6 +5,7 @@ import { AuthService } from '../../../services/auth.service';
 import { AccountsService } from '../../../services/accounts.service';
 import { environment } from '../../../../environments/environment';
 import { Account } from '../../../models/account.model';
+import { ToastsService } from '../../../services/toasts.service';
 
 @Component({
   selector: 'app-add-edit-card',
@@ -19,8 +20,9 @@ export class AddEditCardComponent {
   id!: number;
   accountForm!: FormGroup
   account!: Account
+
   constructor(
-  
+    private toastService: ToastsService,
     private authService: AuthService,
     private accountService: AccountsService,
     private router: Router,
@@ -86,11 +88,13 @@ export class AddEditCardComponent {
         this.accountService.updateAccount(this.account.id, this.accountForm.value).subscribe((res) => {  
           console.log(res);
           this.loading = false
+          this.toastService.show({message: "Cart updated successfully"});
           this.router.navigate([environment.baseHref, 'home']);
       })
       }else{
         this.accountService.addAccount(this.accountForm.value).subscribe((res) => {  
           console.log(res);
+          this.toastService.show({message: "Cart added successfully"});
           this.loading = false
           this.router.navigate([environment.baseHref, 'home']);
       })
@@ -102,7 +106,7 @@ export class AddEditCardComponent {
     this.deleteloading = true
     this.accountService.deleteAccount(this.account.id).subscribe(res => {
       this.deleteloading = false
-   
+      this.toastService.show({message: "Cart deleted successfully"});
       this.router.navigate([environment.baseHref, 'home']);
       
     })

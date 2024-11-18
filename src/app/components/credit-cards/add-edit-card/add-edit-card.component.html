@@ -1,88 +1,177 @@
 <div *ngIf="id && !account" class="loader p-4 my-5 m-2">
-    <app-loader></app-loader>
-  </div>
+  <app-loader></app-loader>
+</div>
 
 <div *ngIf="!id || account" class="row h-100 g-0 p-4">
-    
-    <div  class="col-12 col-md-6 col-lg-5 col-xl-4 mx-auto py-4 ">
-        <h1 class="mb-4 fs-3" *ngIf="!id else editCard">{{'add_new' | translate | async}} </h1>
-        <ng-template #editCard>
-            <h1 class="mb-4 fs-3">{{'edit' | translate | async}} </h1>
-        </ng-template>
-          <form  [formGroup]="accountForm" (ngSubmit)="onaddCard()" >
-            <div class="form-group form-floating mb-3 ">
-                <input type="text" class="form-control" formControlName="name"   value="" id="name" placeholder="{{'accounts.name' | translate | async}}">
-                <label class="form-control-label" for="name">{{'accounts.name' | translate | async}}</label>
-            </div>
-            <div class="form-group form-floating mb-3 ">
-                <input type="text" class="form-control" formControlName="number"  value="" id="number" placeholder="{{'accounts.number' | translate | async}}">
-                <label class="form-control-label" for="number">{{'accounts.number' | translate | async}} <small>({{'optional' | translate | async}})</small> </label>
-            </div>
-    
-            <div class="form-group form-floating  mb-4">
-                <input type="mumber" class="form-control " formControlName="balance"  id="balance" placeholder="{{'accounts.balance' | translate | async}}">
-                <label class="form-control-label" for="balance">{{'accounts.balance' | translate | async}}</label>
-              
-            </div>
-            <span class="form-control-label d-block mb-3" >{{'accounts.color' | translate | async}}</span>
-            <div class=" d-flex justify-content-between mb-3 py-2">
-                <div class="color-option blue">
-                    <input type="radio" formControlName="color" class="btn-check" value="blue" name="color" id="blue" autocomplete="off" checked>
-                    <label class="btn" for="blue"></label>
-                </div>
-                <div class="color-option midnight">
-                    <input type="radio" formControlName="color" class="btn-check" value="midnight" name="color" id="midnight" autocomplete="off" >
-                    <label class="btn" for="midnight"></label>
-                </div>
-                <div class="color-option green">
-                    <input type="radio" formControlName="color" class="btn-check" value="green" name="color" id="green" autocomplete="off" >
-                    <label class="btn" for="green"></label>
-                </div>
-                <div class="color-option yellow">
-                    <input type="radio" formControlName="color" class="btn-check" value="yellow" name="color" id="yellow" autocomplete="off" >
-                    <label class="btn" for="yellow"></label>
-                </div>
-                <div class="color-option red">
-                    <input type="radio" formControlName="color" class="btn-check" value="red" name="color" id="red" autocomplete="off" >
-                    <label class="btn" for="red"></label>
-                </div>
-                <div class="color-option purple">
-                    <input type="radio" formControlName="color" class="btn-check" value="purple" name="color" id="purple" autocomplete="off" >
-                    <label class="btn" for="purple"></label>
-                </div>
-                <div class="color-option grey">
-                    <input type="radio" formControlName="color" class="btn-check" value="grey" name="color" id="grey" autocomplete="off" >
-                    <label class="btn" for="grey"></label>
-                </div>
+  <div class="col-12 col-md-6 col-lg-5 col-xl-4 mx-auto py-4">
+    <h1 class="mb-4 fs-3" *ngIf="!id; else editCard">
+      {{ "add_new" | translate | async }}
+    </h1>
+    <ng-template #editCard>
+      <h1 class="mb-4 fs-3">{{ "edit" | translate | async }}</h1>
+    </ng-template>
+    <form [formGroup]="accountForm" (ngSubmit)="onaddCard()">
+      <div class="form-group form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="name"
+          value=""
+          id="name"
+          placeholder="{{ 'accounts.name' | translate | async }}"
+        />
+        <label class="form-control-label" for="name">{{
+          "accounts.name" | translate | async
+        }}</label>
+      </div>
+      <div class="form-group form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="number"
+          value=""
+          id="number"
+          placeholder="{{ 'accounts.number' | translate | async }}"
+        />
+        <label class="form-control-label" for="number"
+          >{{ "accounts.number" | translate | async }}
+          <small>({{ "optional" | translate | async }})</small>
+        </label>
+      </div>
 
-              
-              
-            </div>
-            
-            <div class="mt-4 py-3 d-grid">
-                <button type="submit" class="btn btn-primary  shadow-sm">
-                   <span *ngIf="!loading; else loader"> <small class="mb-4 fs-6" *ngIf="!id else editCard">{{'add_new' | translate | async}} </small>
-                    <ng-template #editCard>
-                        <span class="mb-4 fs-6">{{'edit' | translate | async}} </span>
-                    </ng-template></span>
-                   <ng-template #loader>
-                    <div class="d-flex justify-content-center py-1">
-                        <div class="spinner-border spinner-border-sm" role="status">
-                          <span class="visually-hidden">Loading...</span>
-                        </div>
-                      </div>
-                   </ng-template>
-                
-                </button>
-                <button type="button" class="btn btn-outline-danger mt-2" (click)="deleteCard()">
-                    <span *ngIf="!deleteloading; else loader" class="mb-4 fs-6">{{'delete' | translate | async}}</span>
-                    
-                 </button>
-            </div>
-          </form>
+      <div class="form-group form-floating mb-4">
+        <input
+          type="mumber"
+          class="form-control"
+          formControlName="balance"
+          id="balance"
+          placeholder="{{ 'accounts.balance' | translate | async }}"
+        />
+        <label class="form-control-label" for="balance">{{
+          "accounts.balance" | translate | async
+        }}</label>
+      </div>
+      <span class="form-control-label d-block mb-3">{{
+        "accounts.color" | translate | async
+      }}</span>
+      <div class="d-flex justify-content-between mb-3 py-2">
+        <div class="color-option blue">
+          <input
+            type="radio"
+            formControlName="color"
+            class="btn-check"
+            value="blue"
+            name="color"
+            id="blue"
+            autocomplete="off"
+            checked
+          />
+          <label class="btn" for="blue"></label>
+        </div>
+        <div class="color-option midnight">
+          <input
+            type="radio"
+            formControlName="color"
+            class="btn-check"
+            value="midnight"
+            name="color"
+            id="midnight"
+            autocomplete="off"
+          />
+          <label class="btn" for="midnight"></label>
+        </div>
+        <div class="color-option green">
+          <input
+            type="radio"
+            formControlName="color"
+            class="btn-check"
+            value="green"
+            name="color"
+            id="green"
+            autocomplete="off"
+          />
+          <label class="btn" for="green"></label>
+        </div>
+        <div class="color-option yellow">
+          <input
+            type="radio"
+            formControlName="color"
+            class="btn-check"
+            value="yellow"
+            name="color"
+            id="yellow"
+            autocomplete="off"
+          />
+          <label class="btn" for="yellow"></label>
+        </div>
+        <div class="color-option red">
+          <input
+            type="radio"
+            formControlName="color"
+            class="btn-check"
+            value="red"
+            name="color"
+            id="red"
+            autocomplete="off"
+          />
+          <label class="btn" for="red"></label>
+        </div>
+        <div class="color-option purple">
+          <input
+            type="radio"
+            formControlName="color"
+            class="btn-check"
+            value="purple"
+            name="color"
+            id="purple"
+            autocomplete="off"
+          />
+          <label class="btn" for="purple"></label>
+        </div>
+        <div class="color-option grey">
+          <input
+            type="radio"
+            formControlName="color"
+            class="btn-check"
+            value="grey"
+            name="color"
+            id="grey"
+            autocomplete="off"
+          />
+          <label class="btn" for="grey"></label>
+        </div>
+      </div>
 
-      
-        
-    </div>
-  
+      <div class="mt-4 py-3 d-grid">
+        <button type="submit" class="btn btn-primary shadow-sm">
+          <span *ngIf="!loading; else loader">
+            <small class="mb-4 fs-6" *ngIf="!id; else editCard"
+              >{{ "add_new" | translate | async }}
+            </small>
+            <ng-template #editCard>
+              <span class="mb-4 fs-6">{{ "edit" | translate | async }} </span>
+            </ng-template></span
+          >
+          <ng-template #loader>
+            <div class="d-flex justify-content-center py-1">
+              <div class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </ng-template>
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger mt-2"
+          (click)="deleteCard()"
+        >
+          <span *ngIf="!deleteloading; else loader" class="mb-4 fs-6">{{
+            "delete" | translate | async
+          }}</span>
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
+
+

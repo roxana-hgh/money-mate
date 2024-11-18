@@ -1,0 +1,17 @@
+.toast-content {
+  color: #fff;
+}
+
+.toast-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 5em;
+  left: 0;
+  width: 100vw;
+  z-index: 1000000;
+}
+
+.toast {
+  width: fit-content;
+}

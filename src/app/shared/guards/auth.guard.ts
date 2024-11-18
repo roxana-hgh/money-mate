@@ -16,6 +16,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | boolean | UrlTree {
+    //const isAuthenticated = localStorage.getItem('token');
     const isAuthenticated = localStorage.getItem('token'); 
 
     

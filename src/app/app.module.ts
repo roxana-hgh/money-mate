@@ -26,6 +26,8 @@ import { APP_BASE_HREF } from '@angular/common';
 import { AddEditCardComponent } from './components/credit-cards/add-edit-card/add-edit-card.component';
 import { LoaderComponent } from './components/shared/loader/loader.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { ToastComponent } from './components/shared/toast/toast.component';
+import { ToastsService } from './services/toasts.service';
 
 
 @NgModule({
@@ -42,7 +44,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     LandingComponent,
     BaseComponent,
     AddEditCardComponent,
-    LoaderComponent
+    LoaderComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CarouselModule
   ],
   
-  providers: [TranslationService, AuthGuard, NotloginGuard,
+  providers: [TranslationService, AuthGuard, NotloginGuard, ToastsService,
     { provide: APP_BASE_HREF, useValue: environment.baseHref }
     // provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
     // provideAuth(() => getAuth()), 

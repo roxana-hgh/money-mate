@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
+import { ToastsService } from './toasts.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { AuthService } from './auth.service';
 export class AccountsService {
   
   baseUrl = 'https://vwgyfkcpejtqlyuyblqk.supabase.co/rest/v1';
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient, private authService: AuthService, public toastService: ToastsService) {
     
   }
 
@@ -27,6 +28,7 @@ export class AccountsService {
   // Helper method to handle errors
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);
+    this.toastService.show({message: "An error occurred"})
     return throwError(error);
   }
 
